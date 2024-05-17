@@ -19,10 +19,10 @@ export default function SideMenu({ PersonName }) {
           a curiosity that knows no bounds, I strive to uncover the beauty and
           complexity of the world through the power of language.
         </p>
-        <Button titel="Edit profile" />
+        <Button title="Edit profile" />
       </div>
       <div style={{ marginRight: "right" }}>
-        <Button titel="Log Out" />
+        <Button title="Log Out" />
       </div>
     </div>
   );

@@ -15,8 +15,8 @@ export default function Blog({
             {name},{blogType} blog
           </h1>
           <div style={{ display: "flex" }}>
-            <Button titel="Edit" />
-            <Button titel="delete" />
+            <Button title="Edit" />
+            <Button title="delete" />
           </div>
         </div>
         <hr></hr>
