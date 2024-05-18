@@ -2,9 +2,9 @@ import React from 'react'
 import "./App.css"
 import SideMenu from '../Components/SideMenu';
 import Blog from '../Components/Blog';
-// import { Link } from 'react-router-dom';
 
-export default function AuthorPage() {
+
+export default function Home() {
     const firstBlog = `Arabic music, with its intricate maqamat and diverse genres, embodies a captivating blend of tradition and innovation. From the haunting melodies of Andalusian music to the pulsating rhythms of contemporary pop, Arabic music offers a rich tapestry of sounds that resonate with audiences worldwide. It serves as a cultural vessel, expressing themes of love, longing, and social commentary, while also embracing global influences and modern production techniques. Through its timeless melodies and evocative lyrics, Arabic music invites listeners on a journey of discovery, where the beauty of tradition meets the excitement of new musical horizons.`;
 
   const secoundBlog =

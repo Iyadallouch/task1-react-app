@@ -1,0 +1,18 @@
+.formStyle {
+  width: 30%;
+}
+
+@media screen and (max-width: 1000px) {
+  .formStyle {
+    width: 45%;
+    height: 500px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .formStyle {
+    width: 65%;
+    height: 500px;
+  }
+}
+

@@ -1,7 +1,5 @@
-// import "./ComponentsStyle.css";
-// import Button from "./Button";
 import React from "react";
-import {} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -10,9 +8,9 @@ export default function Header() {
       style={{ backgroundColor: "teal" }}
     >
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+        <Link to="/" className="navbar-brand">
           Blogging Platform
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -27,19 +25,19 @@ export default function Header() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
+              <Link to="/" className="nav-link active">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">
+              <Link to="/about" className="nav-link">
                 About
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">
-                Contact
-              </a>
+              <Link to="/contact" className="nav-link">
+                Contact Us
+              </Link>
             </li>
           </ul>
 
@@ -50,7 +48,11 @@ export default function Header() {
               placeholder="Search"
               aria-label="Search"
             />
-            <button className="btn btn-outline-success" type="submit">
+            <button
+              className="btn btn-light "
+              type="submit"
+              style={{ backgroundColor: "cadetblue", color: "white" }}
+            >
               Search
             </button>
           </form>
@@ -58,14 +60,12 @@ export default function Header() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
+              <Link to="/login" className="nav-link active" aria-current="page">
                 Login
-              </a>
+              </Link>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/">
-                SignUp
-              </a>
+            <li className="nav-item">            
+              <Link to="/signup" className="nav-link">SignUp</Link>
             </li>
           </ul>
         </div>
