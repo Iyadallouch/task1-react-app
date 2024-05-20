@@ -3,7 +3,7 @@ import React from "react";
 
 export default function About() {
   return (
-    <div style={{ backgroundColor: "cadetblue" }}>
+    <div style={{ backgroundColor: "cadetblue"}}>
       <div className="d-flex justify-content-center align-items-center ">
         <div className="card mt-5 " style={{ width: "50rem" }}>
           <div className="col-lg-7 card-img-top mt-2 ms-2 d-flex justify-content-center align-items-center">
@@ -14,9 +14,9 @@ export default function About() {
             />
           </div>
           <div className="card-body">
-            <h5 className="card-title d-flex justify-content-center align-items-center">
+            <h3 className="card-title d-flex justify-content-center align-items-center">
               About us
-            </h5>
+            </h3>
             <hr></hr>
             <p className="card-text">
               Welcome to our blog, your go-to source for insightful articles,

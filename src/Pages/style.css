@@ -16,3 +16,28 @@
   }
 }
 
+.image-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Styles for the image */
+.image {
+  width: 100vw; 
+  height: 50vh; 
+  display: block;
+  margin: 0 auto; 
+}
+
+.image-text {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: teal; 
+  padding: 20px; 
+  
+}
+

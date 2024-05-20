@@ -41,6 +41,20 @@ export default function Header() {
             </li>
           </ul>
 
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <div className=" px-1  border border-white">
+              <li className="nav-item px-1 ">
+                <Link
+                  to="/write"
+                  className="nav-link active"
+                  aria-current="page"
+                >
+                  Write
+                </Link>
+              </li>
+            </div>
+          </ul>
+
           <form className="d-flex mx-auto" role="search">
             <input
               className="form-control me-2"
@@ -64,8 +78,10 @@ export default function Header() {
                 Login
               </Link>
             </li>
-            <li className="nav-item">            
-              <Link to="/signup" className="nav-link">SignUp</Link>
+            <li className="nav-item">
+              <Link to="/signup" className="nav-link">
+                SignUp
+              </Link>
             </li>
           </ul>
         </div>
