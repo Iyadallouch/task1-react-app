@@ -1,26 +1,24 @@
 import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import "./style.css";
 
 export default function SignUp() {
-  const [username , setUserName] = useState("");
+  const [username, setUserName] = useState("");
   const [emailInput, setEmail] = useState("");
   const [passwordInput, setPassword] = useState("");
   return (
-    <div
-      style={{ backgroundColor: "cadetblue" }}
-      className="signup template d-flex justify-content-center align-items-center  vh-100 "
-    >
-      <div className="formStyle p-5 rounded bg-white">
+    <div className="signup template d-flex justify-content-center align-items-center  vh-100 ">
+      <div className="formStyle p-4 rounded bg-white">
         <form
           onSubmit={(event) => {
             event.preventDefault();
           }}
         >
           <h3 className="text-center">Sign Up</h3>
-          <hr></hr>
+          <hr style={{ borderTop: "6px dotted teal" }}></hr>
           <div>
-          <label htmlFor="lname">Enter your Name : </label>
+            <label htmlFor="lname">Enter your Name : </label>
             <input
               value={username}
               onChange={(event) => {
@@ -31,6 +29,7 @@ export default function SignUp() {
               className="form-control"
             />
           </div>
+          <p></p>
           <div className="mb-3">
             <label htmlFor="email">Enter your Email : </label>
             <input
@@ -42,6 +41,13 @@ export default function SignUp() {
               placeholder="Enter your email"
               className="form-control"
             />
+            <p></p>
+            <label>Select Gender :</label>
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Gender ..</option>
+              <option value="1">Male</option>
+              <option value="2">Female</option>
+            </select>
             <p></p>
             <div className="mb-3">
               <label htmlFor="password">Enter your password : </label>
@@ -71,7 +77,7 @@ export default function SignUp() {
             <button className="btn btn-outline-primary">sign Up</button>
           </div>
           <p className="justify-content-center align-items-center mt-2 text-center">
-            Already have account 
+            Already have account
             <Link to="/login" className="ms-2">
               Login
             </Link>{" "}

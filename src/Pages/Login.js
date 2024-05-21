@@ -7,18 +7,15 @@ export default function Login() {
   const [emailInput, setEmail] = useState("");
   const [passwordInput, setPassword] = useState("");
   return (
-    <div
-      style={{ backgroundColor: "cadetblue" }}
-      className="login template d-flex justify-content-center align-items-center  vh-100 "
-    >
-      <div className="formStyle p-5 rounded bg-white">
+    <div className="login template d-flex justify-content-center align-items-center vh-100 ">
+      <div className="formStyle p-4 rounded bg-white">
         <form
           onSubmit={(event) => {
             event.preventDefault();
           }}
         >
-          <h3 className="text-center">Sign In</h3>
-          <hr></hr>
+          <h3 className="text-center">Log In</h3>
+          <hr style={{ borderTop: "6px dotted teal" }}></hr>
           <div className="mb-3">
             <label htmlFor="email">Enter your Email : </label>
             <input
@@ -59,7 +56,11 @@ export default function Login() {
             <button className="btn btn-outline-primary">Log In</button>
           </div>
           <p className="justify-content-center align-items-center mt-2 text-center">
-            You do not have account ?<Link to="/signup" className="ms-2">Sign up</Link> now
+            You do not have account ?
+            <Link to="/signup" className="ms-2">
+              Sign up
+            </Link>{" "}
+            now
           </p>
         </form>
       </div>

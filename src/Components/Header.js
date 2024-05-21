@@ -70,6 +70,20 @@ export default function Header() {
               Search
             </button>
           </form>
+          <p></p>
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
+            <div className=" px-1  border border-white ">
+              <li className="nav-item px-1 ">
+                <Link
+                  to="/profile"
+                  className="nav-link active"
+                  aria-current="page"
+                >
+                  Profile
+                </Link>
+              </li>
+            </div>
+          </ul>
         </div>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">

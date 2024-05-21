@@ -5,11 +5,7 @@ export default function Contact() {
     <div
       style={{
         backgroundColor: "cadetblue",
-        position: "absolute",
-        top: "56px",
-        left: "0",
-        right: "0",
-        bottom: "0",
+        minHeight: "100vh"
       }}
     >
       <div className="container text-center d-flex justify-content-center align-items-center ">
