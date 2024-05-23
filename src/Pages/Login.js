@@ -4,14 +4,20 @@ import "./style.css";
 import { Link } from "react-router-dom";
 
 export default function Login() {
-  const [emailInput, setEmail] = useState("");
-  const [passwordInput, setPassword] = useState("");
+  // const [emailInput, setEmail] = useState("");
+  // const [passwordInput, setPassword] = useState("");
+  const [loginInputs, setLoginInputs] = useState({
+    email: "",
+    password: "",
+    remember: false,
+  });
   return (
     <div className="login template d-flex justify-content-center align-items-center vh-100 ">
       <div className="formStyle p-4 rounded bg-white">
         <form
           onSubmit={(event) => {
             event.preventDefault();
+            console.log(loginInputs);
           }}
         >
           <h3 className="text-center">Log In</h3>
@@ -19,9 +25,9 @@ export default function Login() {
           <div className="mb-3">
             <label htmlFor="email">Enter your Email : </label>
             <input
-              value={emailInput}
+              value={loginInputs.email}
               onChange={(event) => {
-                setEmail(event.target.value);
+                setLoginInputs({ ...loginInputs, email: event.target.value });
               }}
               type="email"
               placeholder="Enter your email"
@@ -31,9 +37,12 @@ export default function Login() {
             <div className="mb-3">
               <label htmlFor="password">Enter your password : </label>
               <input
-                value={passwordInput}
+                value={loginInputs.password}
                 onChange={(event) => {
-                  setPassword(event.target.value);
+                  setLoginInputs({
+                    ...loginInputs,
+                    password: event.target.value,
+                  });
                 }}
                 type="password"
                 placeholder="Enter your password"
@@ -46,6 +55,13 @@ export default function Login() {
                 className="form-check-input"
                 role="switch"
                 id="check"
+                checked={loginInputs.remember}
+                onChange={(event) => {
+                  setLoginInputs({
+                    ...loginInputs,
+                    remember: event.target.checked,
+                  });
+                }}
               />
               <label htmlFor="check" className="custom-input-label ms-2">
                 Remember me

@@ -4,15 +4,20 @@ import { Link } from "react-router-dom";
 import "./style.css";
 
 export default function SignUp() {
-  const [username, setUserName] = useState("");
-  const [emailInput, setEmail] = useState("");
-  const [passwordInput, setPassword] = useState("");
+  const [signUpInputs, setSignUpInputs] = useState({
+    username: "",
+    email: "",
+    gender: "",
+    password: "",
+    remember: false
+  });
   return (
     <div className="signup template d-flex justify-content-center align-items-center  vh-100 ">
       <div className="formStyle p-4 rounded bg-white">
         <form
           onSubmit={(event) => {
             event.preventDefault();
+            console.log(signUpInputs);
           }}
         >
           <h3 className="text-center">Sign Up</h3>
@@ -20,45 +25,63 @@ export default function SignUp() {
           <div>
             <label htmlFor="lname">Enter your Name : </label>
             <input
-              value={username}
+              value={signUpInputs.username}
               onChange={(event) => {
-                setUserName(event.target.value);
+                setSignUpInputs({
+                  ...signUpInputs,
+                  username: event.target.value,
+                });
               }}
               type="text"
               placeholder="Enter your name"
               className="form-control"
+              id="lname"
             />
           </div>
           <p></p>
           <div className="mb-3">
             <label htmlFor="email">Enter your Email : </label>
             <input
-              value={emailInput}
+              value={signUpInputs.email}
               onChange={(event) => {
-                setEmail(event.target.value);
+                setSignUpInputs({ ...signUpInputs, email: event.target.value });
               }}
               type="email"
               placeholder="Enter your email"
               className="form-control"
+              id="email"
             />
             <p></p>
             <label>Select Gender :</label>
-            <select class="form-select" aria-label="Default select example">
-              <option selected>Gender ..</option>
-              <option value="1">Male</option>
-              <option value="2">Female</option>
+            <select
+              className="form-select"
+              aria-label="Default select example"
+              value={signUpInputs.gender}
+              onChange={(event) => {
+                setSignUpInputs({
+                  ...signUpInputs,
+                  gender: event.target.value,
+                });
+              }}
+            >
+              <option >Male</option>
+              <option >Female</option>
             </select>
             <p></p>
             <div className="mb-3">
               <label htmlFor="password">Enter your password : </label>
               <input
-                value={passwordInput}
+                value={signUpInputs.password}
                 onChange={(event) => {
-                  setPassword(event.target.value);
+                  setSignUpInputs({
+                    ...signUpInputs,
+                    password: event.target.value,
+                  });
                 }}
                 type="password"
                 placeholder="Enter your password"
                 className="form-control"
+                id="password"
               />
             </div>
             <div className="form-check form-switch mb-3">
@@ -67,6 +90,13 @@ export default function SignUp() {
                 className="form-check-input"
                 role="switch"
                 id="check"
+                checked={signUpInputs.remember}
+                onChange={(event) => {
+                  setSignUpInputs({
+                    ...signUpInputs,
+                    remember: event.target.checked,
+                  });
+                }}
               />
               <label htmlFor="check" className="custom-input-label ms-2">
                 Remember me

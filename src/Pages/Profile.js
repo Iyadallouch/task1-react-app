@@ -48,7 +48,7 @@ export default function Profile() {
         <div className="justify-content-center align-items-center text-center d-flex ">
           <button
             type="button"
-            class="btn btn-outline-primary mx-5 "
+            className="btn btn-outline-primary mx-5 "
             value="Edit"
           >
             Edit
@@ -56,7 +56,7 @@ export default function Profile() {
 
           <button
             type="button"
-            class="btn btn-outline-primary mx-5 "
+            className="btn btn-outline-primary mx-5 "
             value="Delete"
           >
             Delete

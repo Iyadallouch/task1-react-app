@@ -34,7 +34,7 @@ export default function About() {
         <h1>Our Team</h1>
       </div>
       <div className="container text-center">
-        <div class="card-group">
+        <div className="card-group">
           <div className="card justify-content-center align-items-center d-flex">
             <div className="col-lg-6  ">
               <img

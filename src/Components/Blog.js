@@ -40,7 +40,7 @@ export default function Blog({ children }) {
       <div className="col">
         <div className="card">
           <div className=" justify-content-center align-items-center d-flex mt-3">
-            <img src="Art.jpg" class="card-img-top img-size" alt="Art" />
+            <img src="Art.jpg" className="card-img-top img-size" alt="Art" />
           </div>
           <div className="card-body">
             <h3 className="card-title justify-content-center align-items-center d-flex">
@@ -71,7 +71,7 @@ export default function Blog({ children }) {
       <div className="col">
         <div className="card">
           <div className=" justify-content-center align-items-center d-flex mt-3">
-            <img src="Cars.jpg" class="card-img-top img-size" alt="Cars" />
+            <img src="Cars.jpg" className="card-img-top img-size" alt="Cars" />
           </div>
           <div className="card-body">
             <h3 className="card-title justify-content-center align-items-center d-flex">

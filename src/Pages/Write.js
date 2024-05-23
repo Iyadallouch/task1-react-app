@@ -3,9 +3,25 @@ import "./style.css";
 import { useState } from "react";
 
 export default function Write() {
-  const [titleInput, setTitle] = useState("");
-  const [typeInput, setType] = useState("");
-  const [textInput, setText] = useState("");
+  const [blogInputs, setBlogInputs] = useState({
+    blogTitle: "",
+    blogType: "",
+    blogContent: "",
+    image: null,
+  });
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setBlogInputs((blogInputs) => ({
+          ...blogInputs,
+          image: reader.result,
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   return (
     <div style={{ backgroundColor: "cadetblue", minHeight: "100vh" }}>
@@ -18,13 +34,21 @@ export default function Write() {
           <h5 className="card-header">Publish your blog</h5>
           <div className="card-body">
             <h5 className="card-title">Fill the form please !!</h5>
-            <form>
+            <form
+              onSubmit={(event) => {
+                event.preventDefault();
+                console.log(blogInputs);
+              }}
+            >
               <div className="mb-3">
                 <label className="form-label">Enter the blog title : </label>
                 <input
-                  value={titleInput}
+                  value={blogInputs.blogTitle}
                   onChange={(event) => {
-                    setTitle(event.target.value);
+                    setBlogInputs({
+                      ...blogInputs,
+                      blogTitle: event.target.value,
+                    });
                   }}
                   type="text"
                   className="form-control"
@@ -34,9 +58,12 @@ export default function Write() {
               <div className="mb-3">
                 <label className="form-label">Enter the blog type : </label>
                 <input
-                  value={typeInput}
+                  value={blogInputs.blogType}
                   onChange={(event) => {
-                    setType(event.target.value);
+                    setBlogInputs({
+                      ...blogInputs,
+                      blogType: event.target.value,
+                    });
                   }}
                   type="text"
                   className="form-control"
@@ -46,9 +73,12 @@ export default function Write() {
               <div className="mb-3">
                 <label className="form-label">Enter your blog content :</label>
                 <textarea
-                  value={textInput}
+                  value={blogInputs.blogContent}
                   onChange={(event) => {
-                    setText(event.target.value);
+                    setBlogInputs({
+                      ...blogInputs,
+                      blogContent: event.target.value,
+                    });
                   }}
                   type="textarea"
                   className="form-control"
@@ -57,10 +87,39 @@ export default function Write() {
                 ></textarea>
               </div>
               <div className="mb-3">
-                <label for="formFile" class="form-label">
-                  Upload one image for your blog
-                </label>
-                <input className="form-control" type="file" id="formFile" />
+                {blogInputs.image && (
+                  <div style={{ display: "flex", flexDirection: "column" }}>
+                    <img
+                      src={blogInputs.image}
+                      alt="Blog"
+                      style={{ width: "100px", height: "100px" }}
+                    />
+                    <div>
+                      <label htmlFor="formFile" className="form-label">
+                        change image :
+                      </label>
+                      <input
+                        className="form-control"
+                        type="file"
+                        id="formFile"
+                        onChange={handleImageChange}
+                      />
+                    </div>
+                  </div>
+                )}
+                {blogInputs.image == null && (
+                  <>
+                    <label htmlFor="formFile" className="form-label">
+                      Upload one image for your blog
+                    </label>
+                    <input
+                      className="form-control"
+                      type="file"
+                      id="formFile"
+                      onChange={handleImageChange}
+                    />
+                  </>
+                )}
               </div>
               <div className="justify-content-center align-items-center text-center d-flex ">
                 <button type="submit" className="btn btn-outline-primary">

@@ -11,7 +11,7 @@ export default function Contact() {
       <div className="container text-center d-flex justify-content-center align-items-center ">
         <div className="row row-cols-1">
           <div className="col my-5 text-white">
-            <h1>Fell free to contact us</h1>
+            <h1>Feel free to contact us</h1>
           </div>
 
           <div className="col">
@@ -28,7 +28,7 @@ export default function Contact() {
                   <div className="col-md-8">
                     <div className="card-body">
                       <h3 className="card-title my-4">contact us</h3>
-                      <p className="card-text">Email : Blog@exampel.com</p>
+                      <p className="card-text">Email : Blog@gmail.com</p>
                       <p className="card-text">Phone Number : 0501111111</p>
                       <p className="card-text">Address : Abudhabi,UAE</p>
                     </div>
