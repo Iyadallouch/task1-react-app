@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.css";
 import Blog from "../Components/Blog";
+import { Link } from "react-router-dom";
 export default function Profile() {
   return (
     <div>
@@ -46,6 +47,7 @@ export default function Profile() {
 
       <Blog>
         <div className="justify-content-center align-items-center text-center d-flex ">
+          <Link to={`/write?edit=2`}>
           <button
             type="button"
             className="btn btn-outline-primary mx-5 "
@@ -53,7 +55,7 @@ export default function Profile() {
           >
             Edit
           </button>
-
+          </Link>
           <button
             type="button"
             className="btn btn-outline-primary mx-5 "

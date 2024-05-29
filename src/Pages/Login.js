@@ -4,8 +4,6 @@ import "./style.css";
 import { Link } from "react-router-dom";
 
 export default function Login() {
-  // const [emailInput, setEmail] = useState("");
-  // const [passwordInput, setPassword] = useState("");
   const [loginInputs, setLoginInputs] = useState({
     email: "",
     password: "",

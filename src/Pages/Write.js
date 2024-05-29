@@ -92,7 +92,7 @@ export default function Write() {
                     <img
                       src={blogInputs.image}
                       alt="Blog"
-                      style={{ width: "100px", height: "100px" }}
+                      style={{ width: "200px", height: "150px" }}
                     />
                     <div>
                       <label htmlFor="formFile" className="form-label">
