@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Header() {
+  const user = true;
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark"
@@ -42,8 +43,8 @@ export default function Header() {
           </ul>
 
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            <div className=" px-1  border border-white">
-              <li className="nav-item px-1 ">
+            {user && (
+              <li className="nav-item px-1   border border-white">
                 <Link
                   to="/write"
                   className="nav-link active"
@@ -52,7 +53,7 @@ export default function Header() {
                   Write
                 </Link>
               </li>
-            </div>
+            )}
           </ul>
 
           <form className="d-flex mx-auto" role="search">
@@ -72,31 +73,40 @@ export default function Header() {
           </form>
           <p></p>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
-            <div className=" px-1  border border-white ">
-              <li className="nav-item px-1 ">
+            {user && (
+              <li className="nav-item px-1   border border-white ">
                 <Link
                   to="/profile"
-                  className="nav-link active"
+                  className="nav-link active "
                   aria-current="page"
                 >
                   Profile
                 </Link>
               </li>
-            </div>
+            )}
           </ul>
         </div>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link to="/login" className="nav-link active" aria-current="page">
-                Login
-              </Link>
+              {!user && (
+                <Link
+                  to="/login"
+                  className="nav-link active"
+                  aria-current="page"
+                >
+                  Login
+                </Link>
+              )}
             </li>
             <li className="nav-item">
-              <Link to="/signup" className="nav-link">
-                SignUp
-              </Link>
+              {!user && (
+                <Link to="/signup" className="nav-link">
+                  SignUp
+                </Link>
+              )}
             </li>
+            <li className="nav-item nav-link active">{user && "LogOut"}</li>
           </ul>
         </div>
       </div>
