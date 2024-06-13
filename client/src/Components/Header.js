@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Header() {
-  const user = false;
+  const user = true;
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark"

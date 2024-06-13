@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
-import Blog from "../Components/Blog";
+//import Blog from "../Components/Blog";
+import axios from "axios";
+import Blogs from "../Components/Blogs";
+import { useLocation } from "react-router-dom";
 
 export default function Home() {
+  const [blogs, setBlogs] = useState([]);
+  const { search } = useLocation();
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      const res = await axios.get("/blogs" + search);
+      setBlogs(res.data);
+    };
+    fetchBlogs();
+  }, [search]);
   return (
-    <div>
+    <div className="w-100 p-3">
       <div className="image-container">
         <img src="HomeWall.jpg" alt="Home Wall" className="image" />
         <div className="image-text">
@@ -12,38 +25,7 @@ export default function Home() {
           <p>Here were you can discover a world of knowledge and inspiration</p>
         </div>
       </div>
-      <Blog />
-      <div className="justify-content-center align-items-center d-flex">
-        <nav aria-label="Page navigation example ">
-          <ul className="pagination">
-            <li className="page-item">
-              <a className="page-link" href="/">
-                Previous
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="/">
-                1
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="/">
-                2
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="/">
-                3
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="/">
-                Next
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+      <Blogs blogs={blogs} />
     </div>
   );
 }
