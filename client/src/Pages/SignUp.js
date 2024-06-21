@@ -2,34 +2,42 @@ import React from "react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
+import axios from "axios";
 
 export default function SignUp() {
   const [signUpInputs, setSignUpInputs] = useState({
     username: "",
     email: "",
-    gender: "",
+    gender: "Male",
     password: "",
-    remember: false
+    // remember: false
   });
+  const [error, setError] = useState(false);
+
+  const handelSubmit = async (e) => {
+    e.preventDefault();
+    setError(false);
+    try {
+      const res = await axios.post("/auth/signup", signUpInputs);
+      res.data && window.location.replace("/login");
+    } catch (err) {
+      setError(true);
+    }
+  };
   return (
-    <div className="signup template d-flex justify-content-center align-items-center  vh-100 ">
+    <div className="signup template d-flex justify-content-center align-items-center vh-100 ">
       <div className="formStyle p-4 rounded bg-white">
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-            console.log(signUpInputs);
-          }}
-        >
+        <form onSubmit={handelSubmit}>
           <h3 className="text-center">Sign Up</h3>
           <hr style={{ borderTop: "6px dotted teal" }}></hr>
           <div>
             <label htmlFor="lname">Enter your Name : </label>
             <input
               value={signUpInputs.username}
-              onChange={(event) => {
+              onChange={(e) => {
                 setSignUpInputs({
                   ...signUpInputs,
-                  username: event.target.value,
+                  username: e.target.value,
                 });
               }}
               type="text"
@@ -43,8 +51,8 @@ export default function SignUp() {
             <label htmlFor="email">Enter your Email : </label>
             <input
               value={signUpInputs.email}
-              onChange={(event) => {
-                setSignUpInputs({ ...signUpInputs, email: event.target.value });
+              onChange={(e) => {
+                setSignUpInputs({ ...signUpInputs, email: e.target.value });
               }}
               type="email"
               placeholder="Enter your email"
@@ -57,25 +65,25 @@ export default function SignUp() {
               className="form-select"
               aria-label="Default select example"
               value={signUpInputs.gender}
-              onChange={(event) => {
+              onChange={(e) => {
                 setSignUpInputs({
                   ...signUpInputs,
-                  gender: event.target.value,
+                  gender: e.target.value,
                 });
               }}
             >
-              <option >Male</option>
-              <option >Female</option>
+              <option>Male</option>
+              <option>Female</option>
             </select>
             <p></p>
             <div className="mb-3">
               <label htmlFor="password">Enter your password : </label>
               <input
                 value={signUpInputs.password}
-                onChange={(event) => {
+                onChange={(e) => {
                   setSignUpInputs({
                     ...signUpInputs,
-                    password: event.target.value,
+                    password: e.target.value,
                   });
                 }}
                 type="password"
@@ -84,27 +92,34 @@ export default function SignUp() {
                 id="password"
               />
             </div>
-            <div className="form-check form-switch mb-3">
+            {/* <div className="form-check form-switch mb-3">
               <input
                 type="checkbox"
                 className="form-check-input"
                 role="switch"
                 id="check"
                 checked={signUpInputs.remember}
-                onChange={(event) => {
+                onChange={(e) => {
                   setSignUpInputs({
                     ...signUpInputs,
-                    remember: event.target.checked,
+                    remember: e.target.checked,
                   });
                 }}
               />
               <label htmlFor="check" className="custom-input-label ms-2">
                 Remember me
               </label>
-            </div>
+            </div> */}
           </div>
           <div className="d-grid">
-            <button className="btn btn-outline-primary">sign Up</button>
+            <button className="btn btn-outline-primary" type="submit">
+              sign Up
+            </button>
+            {error && (
+              <span className="justify-content-center align-items-center mt-2 text-center text-danger">
+                Signup went wrong!!!
+              </span>
+            )}
           </div>
           <p className="justify-content-center align-items-center mt-2 text-center">
             Already have account

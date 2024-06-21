@@ -21,10 +21,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    remember: {
-      type: Boolean,
-      default: false,
-    },
+    // remember: {
+    //   type: Boolean,
+    //   default: false,
+    // },
   },
   { timestamps: true }
 );

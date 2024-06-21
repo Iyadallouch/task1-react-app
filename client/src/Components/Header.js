@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../context/Context";
 
 export default function Header() {
-  const user = true;
+  const {user} = useContext(Context);
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark"

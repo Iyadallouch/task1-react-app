@@ -1,32 +1,44 @@
-import React from "react";
-import { useState } from "react";
+import React, { useContext, useRef } from "react";
+//import { useState } from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
+import { Context } from "../context/Context";
+import axios from "axios";
+import { LoginFailure, LoginSuccess, loginStart } from "../context/Actions";
 
 export default function Login() {
-  const [loginInputs, setLoginInputs] = useState({
-    email: "",
-    password: "",
-    remember: false,
-  });
+  // const [loginInputs, setLoginInputs] = useState({
+  //   email: "",
+  //   password: "",
+  // });
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const { dispatch ,isFetching } = useContext(Context);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    dispatch(loginStart());
+    try {
+      const res = await axios.post("/auth/login", {
+        email: emailRef.current.value,
+        password: passwordRef.current.value,
+      });
+      dispatch(LoginSuccess(res.data));
+    } catch (err) {
+      dispatch(LoginFailure());
+    }
+  };
+  
   return (
     <div className="login template d-flex justify-content-center align-items-center vh-100 ">
       <div className="formStyle p-4 rounded bg-white">
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-            console.log(loginInputs);
-          }}
-        >
+        <form onSubmit={handleSubmit}>
           <h3 className="text-center">Log In</h3>
           <hr style={{ borderTop: "6px dotted teal" }}></hr>
           <div className="mb-3">
             <label htmlFor="email">Enter your Email : </label>
             <input
-              value={loginInputs.email}
-              onChange={(event) => {
-                setLoginInputs({ ...loginInputs, email: event.target.value });
-              }}
+              ref={emailRef}
               type="email"
               placeholder="Enter your email"
               className="form-control"
@@ -35,39 +47,17 @@ export default function Login() {
             <div className="mb-3">
               <label htmlFor="password">Enter your password : </label>
               <input
-                value={loginInputs.password}
-                onChange={(event) => {
-                  setLoginInputs({
-                    ...loginInputs,
-                    password: event.target.value,
-                  });
-                }}
+                ref={passwordRef}
                 type="password"
                 placeholder="Enter your password"
                 className="form-control"
               />
             </div>
-            <div className="form-check form-switch mb-3">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                role="switch"
-                id="check"
-                checked={loginInputs.remember}
-                onChange={(event) => {
-                  setLoginInputs({
-                    ...loginInputs,
-                    remember: event.target.checked,
-                  });
-                }}
-              />
-              <label htmlFor="check" className="custom-input-label ms-2">
-                Remember me
-              </label>
-            </div>
           </div>
           <div className="d-grid">
-            <button className="btn btn-outline-primary">Log In</button>
+            <button className="btn btn-outline-primary" type="submit" disabled={isFetching}>
+              Log In
+            </button>
           </div>
           <p className="justify-content-center align-items-center mt-2 text-center">
             You do not have account ?
