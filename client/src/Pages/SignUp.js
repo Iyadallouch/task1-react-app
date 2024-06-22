@@ -10,7 +10,6 @@ export default function SignUp() {
     email: "",
     gender: "Male",
     password: "",
-    // remember: false
   });
   const [error, setError] = useState(false);
 
@@ -58,6 +57,7 @@ export default function SignUp() {
               placeholder="Enter your email"
               className="form-control"
               id="email"
+              autoFocus={true}
             />
             <p></p>
             <label>Select Gender :</label>
@@ -92,24 +92,6 @@ export default function SignUp() {
                 id="password"
               />
             </div>
-            {/* <div className="form-check form-switch mb-3">
-              <input
-                type="checkbox"
-                className="form-check-input"
-                role="switch"
-                id="check"
-                checked={signUpInputs.remember}
-                onChange={(e) => {
-                  setSignUpInputs({
-                    ...signUpInputs,
-                    remember: e.target.checked,
-                  });
-                }}
-              />
-              <label htmlFor="check" className="custom-input-label ms-2">
-                Remember me
-              </label>
-            </div> */}
           </div>
           <div className="d-grid">
             <button className="btn btn-outline-primary" type="submit">

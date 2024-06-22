@@ -1,26 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./style.css";
 import { useState } from "react";
+import axios from "axios";
+import { Context } from "../context/Context";
 
 export default function Write() {
-  const [blogInputs, setBlogInputs] = useState({
-    blogTitle: "",
-    blogType: "",
-    blogContent: "",
-    image: null,
-  });
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
+  const [title, setTitle] = useState("");
+  const [type, setType] = useState("");
+  const [desc, setDesc] = useState("");
+  const [file, setFile] = useState(null);
+  const { user } = useContext(Context);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newBlog = {
+      username: user.username,
+      title,
+      type,
+      desc,
+    };
     if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setBlogInputs((blogInputs) => ({
-          ...blogInputs,
-          image: reader.result,
-        }));
-      };
-      reader.readAsDataURL(file);
+      const data = new FormData();
+      const filename = Date.now() + file.name;
+      data.append("name", filename);
+      data.append("file", file);
+      newBlog.photo = filename;
+      try {
+        await axios.post("/upload", data);
+        (await axios.post("/blogs", newBlog)) && window.location.replace("/");
+      } catch (err) {}
     }
+    
   };
 
   return (
@@ -34,22 +44,12 @@ export default function Write() {
           <h5 className="card-header">Publish your blog</h5>
           <div className="card-body">
             <h5 className="card-title">Fill the form please !!</h5>
-            <form
-              onSubmit={(event) => {
-                event.preventDefault();
-                console.log(blogInputs);
-              }}
-            >
+            <form onSubmit={handleSubmit}>
               <div className="mb-3">
                 <label className="form-label">Enter the blog title : </label>
                 <input
-                  value={blogInputs.blogTitle}
-                  onChange={(event) => {
-                    setBlogInputs({
-                      ...blogInputs,
-                      blogTitle: event.target.value,
-                    });
-                  }}
+                  autoFocus={true}
+                  onChange={(e) => setTitle(e.target.value)}
                   type="text"
                   className="form-control"
                   placeholder="Title ...."
@@ -58,13 +58,7 @@ export default function Write() {
               <div className="mb-3">
                 <label className="form-label">Enter the blog type : </label>
                 <input
-                  value={blogInputs.blogType}
-                  onChange={(event) => {
-                    setBlogInputs({
-                      ...blogInputs,
-                      blogType: event.target.value,
-                    });
-                  }}
+                  onChange={(e) => setType(e.target.value)}
                   type="text"
                   className="form-control"
                   placeholder="Type ...."
@@ -73,13 +67,7 @@ export default function Write() {
               <div className="mb-3">
                 <label className="form-label">Enter your blog content :</label>
                 <textarea
-                  value={blogInputs.blogContent}
-                  onChange={(event) => {
-                    setBlogInputs({
-                      ...blogInputs,
-                      blogContent: event.target.value,
-                    });
-                  }}
+                  onChange={(e) => setDesc(e.target.value)}
                   type="textarea"
                   className="form-control"
                   placeholder="Blog content ...."
@@ -87,10 +75,10 @@ export default function Write() {
                 ></textarea>
               </div>
               <div className="mb-3">
-                {blogInputs.image && (
+                {file && (
                   <div style={{ display: "flex", flexDirection: "column" }}>
                     <img
-                      src={blogInputs.image}
+                      src={URL.createObjectURL(file)}
                       alt="Blog"
                       style={{ width: "200px", height: "150px" }}
                     />
@@ -102,12 +90,12 @@ export default function Write() {
                         className="form-control"
                         type="file"
                         id="formFile"
-                        onChange={handleImageChange}
+                        onChange={(e) => setFile(e.target.files[0])}
                       />
                     </div>
                   </div>
                 )}
-                {blogInputs.image == null && (
+                {file == null && (
                   <>
                     <label htmlFor="formFile" className="form-label">
                       Upload one image for your blog
@@ -116,7 +104,7 @@ export default function Write() {
                       className="form-control"
                       type="file"
                       id="formFile"
-                      onChange={handleImageChange}
+                      onChange={(e) => setFile(e.target.files[0])}
                     />
                   </>
                 )}

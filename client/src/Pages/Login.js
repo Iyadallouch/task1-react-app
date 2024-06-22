@@ -1,5 +1,4 @@
 import React, { useContext, useRef } from "react";
-//import { useState } from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
 import { Context } from "../context/Context";
@@ -7,13 +6,9 @@ import axios from "axios";
 import { LoginFailure, LoginSuccess, loginStart } from "../context/Actions";
 
 export default function Login() {
-  // const [loginInputs, setLoginInputs] = useState({
-  //   email: "",
-  //   password: "",
-  // });
   const emailRef = useRef();
   const passwordRef = useRef();
-  const { dispatch ,isFetching } = useContext(Context);
+  const { dispatch, isFetching } = useContext(Context);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -28,7 +23,7 @@ export default function Login() {
       dispatch(LoginFailure());
     }
   };
-  
+
   return (
     <div className="login template d-flex justify-content-center align-items-center vh-100 ">
       <div className="formStyle p-4 rounded bg-white">
@@ -55,7 +50,11 @@ export default function Login() {
             </div>
           </div>
           <div className="d-grid">
-            <button className="btn btn-outline-primary" type="submit" disabled={isFetching}>
+            <button
+              className="btn btn-outline-primary"
+              type="submit"
+              disabled={isFetching}
+            >
               Log In
             </button>
           </div>

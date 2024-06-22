@@ -1,9 +1,14 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../context/Context";
+import { Logout } from "../context/Actions";
 
 export default function Header() {
-  const {user} = useContext(Context);
+  const { user, dispatch } = useContext(Context);
+
+  const handleLogout = () => {
+    dispatch(Logout());
+  };
   return (
     <nav
       className="navbar navbar-expand-lg navbar-dark"
@@ -107,7 +112,11 @@ export default function Header() {
                 </Link>
               )}
             </li>
-            <li className="nav-item nav-link active">{user && "LogOut"}</li>
+            <li className="nav-item nav-link active" onClick={handleLogout}>
+              <Link className="link-offset-2 link-underline link-underline-opacity-0 link-light">
+                {user && "LogOut"}
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
