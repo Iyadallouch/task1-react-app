@@ -1,0 +1,68 @@
+.app-wrapper {
+  background-color: cadetblue;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.formStyle {
+  width: 30%;
+}
+
+@media screen and (max-width: 1000px) {
+  .formStyle {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .formStyle {
+    width: 65%;
+  }
+}
+
+.image-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Styles for the image */
+.image {
+  width: 100vw;
+  height: 50vh;
+
+  display: block;
+  margin: 0 auto;
+  position: relative;
+}
+/* Container for the image and text */
+.image-container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.image-text {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: teal;
+  padding: 20px;
+  border-radius: 8px;
+}
+@media (max-width: 768px) {
+  .image-text {
+    width: 90%; /* Adjust text container width for smaller screens */
+    padding: 15px;
+  }
+}
+
+.image-account-size {
+  max-width: 200px;
+  max-height: 200px;
+}
+.container {
+  padding: 20px;
+}
