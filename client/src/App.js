@@ -12,8 +12,6 @@ import "./Pages/style.css";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Context } from "./context/Context";
-// import { useContext } from "react";
-// import { Context } from "./context/Context";
 
 function App() {
   const { user } = useContext(Context);

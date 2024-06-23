@@ -11,6 +11,9 @@ export default function Blog({ blog, showButtons }) {
   const [type, setType] = useState(blog.type);
   const [desc, setDesc] = useState(blog.desc);
   const [isEditing, setIsEditing] = useState(false);
+  const [originalTitle, setOriginalTitle] = useState(blog.title);
+  const [originalType, setOriginalType] = useState(blog.type);
+  const [originalDesc, setOriginalDesc] = useState(blog.desc);
 
   const handleSave = async () => {
     try {
@@ -29,7 +32,20 @@ export default function Blog({ blog, showButtons }) {
   };
 
   const toggleEditMode = () => {
-    setIsEditing((prevEditing) => !prevEditing);
+    setIsEditing((prevEditing) => {
+      if (prevEditing) {
+        // Revert changes if canceling
+        setTitle(originalTitle);
+        setType(originalType);
+        setDesc(originalDesc);
+      } else {
+        // Save original values if starting to edit
+        setOriginalTitle(title);
+        setOriginalType(type);
+        setOriginalDesc(desc);
+      }
+      return !prevEditing;
+    });
   };
 
   const handleDelete = async () => {
@@ -38,7 +54,9 @@ export default function Blog({ blog, showButtons }) {
         data: { username: user.username },
       });
       window.location.replace("/profile");
-    } catch (err) {}
+    } catch (err) {
+      console.error("Error deleting blog:", err);
+    }
   };
 
   return (
@@ -113,6 +131,14 @@ export default function Blog({ blog, showButtons }) {
                   >
                     {isEditing ? "Save" : "Edit"}
                   </button>
+                  {isEditing && (
+                    <button
+                      className="btn btn-outline-secondary"
+                      onClick={toggleEditMode}
+                    >
+                      Cancel
+                    </button>
+                  )}
                   <button
                     className="btn btn-outline-danger"
                     onClick={handleDelete}

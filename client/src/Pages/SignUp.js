@@ -43,6 +43,7 @@ export default function SignUp() {
               placeholder="Enter your name"
               className="form-control"
               id="lname"
+              autoFocus={true}
             />
           </div>
           <p></p>
@@ -57,7 +58,6 @@ export default function SignUp() {
               placeholder="Enter your email"
               className="form-control"
               id="email"
-              autoFocus={true}
             />
             <p></p>
             <label>Select Gender :</label>

@@ -70,10 +70,13 @@ router.get("/:id", async (req, res) => {
 //Get all the blogs
 router.get("/", async (req, res) => {
   const username = req.query.user;
+  const type = req.query.type;
   try {
     let blogs;
     if (username) {
       blogs = await Blog.find({ username });
+    } else if (type) {
+      blogs = await Blog.find({ type: { $regex: type, $options: "i" } });
     } else {
       blogs = await Blog.find();
     }

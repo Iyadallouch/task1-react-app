@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
-//import Blog from "../Components/Blog";
 import axios from "axios";
 import Blogs from "../Components/Blogs";
 import { useLocation } from "react-router-dom";
@@ -11,18 +10,23 @@ export default function Home() {
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      const res = await axios.get("/blogs" + search);
-      setBlogs(res.data);
+      try {
+        const res = await axios.get("/blogs" + search);
+        setBlogs(res.data);
+      } catch (err) {
+        console.error("Error fetching blogs", err);
+      }
     };
     fetchBlogs();
   }, [search]);
+
   return (
     <div className="w-100 p-3">
       <div className="image-container">
         <img src="HomeWall.jpg" alt="Home Wall" className="image" />
         <div className="image-text">
           <h2>Welcome to our Blog Website!</h2>
-          <p>Here were you can discover a world of knowledge and inspiration</p>
+          <p>Here you can discover a world of knowledge and inspiration</p>
         </div>
       </div>
       <Blogs blogs={blogs} />
